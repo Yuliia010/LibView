@@ -36,7 +36,7 @@
                     <transforms:AnimationTransformBase ScaleX="1" ScaleY="1" />
                 </lottie:LottieAnimationView.AnimationScale>
             </lottie:LottieAnimationView>
-            <TextBox x:Name="TxtBox_UserName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  materialDesign:HintAssist.Hint="Login" VerticalAlignment="Bottom"/>
+            <TextBox x:Name="TxtBox_UserName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  materialDesign:HintAssist.Hint="Login" VerticalAlignment="Bottom" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"/>
             <PasswordBox HorizontalContentAlignment="Left" x:Name="PassBox_Password" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"  materialDesign:HintAssist.Hint="Password" Style="{DynamicResource MaterialDesignFloatingHintRevealPasswordBox}" />
             <Button x:Name="Btn_LogIn"  Grid.Row="3" Grid.Column="1"  Content="_LOGIN" Margin="10"
         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
