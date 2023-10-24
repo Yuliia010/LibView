@@ -1,6 +1,4 @@
-﻿using LibView.Navigator;
-using LibView.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,23 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LibView
+namespace LibView.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HomePage : UserControl
     {
-        public MainWindow()
+        public HomePage()
         {
             InitializeComponent();
-            NavigatorObject.pageSwitcher = this;
-            NavigatorObject.Switch(new AuthorizationPage());
-        }
-
-        public void Navigate(UserControl nextPage)
-        {
-            this.Content = nextPage;
         }
     }
 }
