@@ -4,7 +4,7 @@ using System.Net.Sockets;
 
 namespace LibView.DAL
 {
-    public class LitViewContext : DbContext
+    public class LibViewContext : DbContext
     {
         string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=BookViewer; Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         public DbSet<User> Users { get; set; }

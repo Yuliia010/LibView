@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LibView.Pages;
+using LibView.Services.Services;
 
 namespace LibView.Pages
 {
@@ -22,7 +24,37 @@ namespace LibView.Pages
     {
         public AuthorizationScreen()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+
+        }
+
+        private void Btn_LogIn_Click(object sender, RoutedEventArgs e)
+        {
+            string login = TxtBox_UserName.Text.Trim();
+            string password = PassBox_Password.Password;
+
+            //MessageBox.Show($"Its user {login}, {password}");
+            var user = UserService.GetUser(login);
+
+            if (user != null)
+            {
+                if (UserService.CheckPassword(user, password))
+                {
+                    MessageBox.Show("Login success!");
+
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect input!");
+                }
+
+            }
+
+        }
+
+        private void Btn_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            return;
         }
     }
 }
