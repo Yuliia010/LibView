@@ -26,7 +26,7 @@ namespace LibView
         {
             InitializeComponent();
             NavigatorObject.pageSwitcher = this;
-            NavigatorObject.Switch(new AuthorizationPage());
+            NavigatorObject.Switch(new AuthorizationScreen());
         }
 
         public void Navigate(UserControl nextPage)

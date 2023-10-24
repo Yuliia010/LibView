@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace LibView.Pages
 {
     /// <summary>
-    /// Interaction logic for HomePage.xaml
+    /// Interaction logic for AuthorizationPage.xaml
     /// </summary>
-    public partial class HomePage : UserControl
+    public partial class AuthorizationScreen : UserControl
     {
-        public HomePage()
+        public AuthorizationScreen()
         {
             InitializeComponent();
         }
