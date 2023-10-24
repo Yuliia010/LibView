@@ -24,8 +24,11 @@ namespace LibView.Pages
     {
         public AuthorizationScreen()
         {
-            InitializeComponent(); 
-
+            InitializeComponent();
+            LottieLogin.FileName = "Sources/LottieImages/Login.json";
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = new BitmapImage(new Uri("pack://siteoforigin:,,,/Sources/Backgrounds/backgroundLogin3.jpg"));
+            this.Background = imageBrush;
         }
 
         private void Btn_LogIn_Click(object sender, RoutedEventArgs e)
