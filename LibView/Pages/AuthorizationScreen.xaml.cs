@@ -25,7 +25,7 @@ namespace LibView.Pages
     /// </summary>
     public partial class AuthorizationScreen : UserControl
     {
-        public static string backgroundURI = "pack://siteoforigin:,,,/Sources/Backgrounds/backgroundLogin3.jpg";
+        public static string backgroundURI = "pack://siteoforigin:,,,/Sources/Backgrounds/purple-and-blue-background.jpg";
         public AuthorizationScreen()
         {
             InitializeComponent();
@@ -39,15 +39,12 @@ namespace LibView.Pages
         {
             string login = TxtBox_UserName.Text.Trim();
             string password = PassBox_Password.Password;
-
-            //MessageBox.Show($"Its user {login}, {password}");
             var user = UserService.GetUser(login);
 
             
             if (user != null && UserService.CheckPassword(user, password))
             {
-                NavigatorObject.Switch(new AuthorizationStateScreen("login success"));
-
+                NavigatorObject.Switch(new HomeScreen(user));
             }
             else
             {

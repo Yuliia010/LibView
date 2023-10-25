@@ -37,10 +37,6 @@ namespace LibView.UI.Pages
         {
             switch(_state)
             {
-                case "login success":
-                    LottieState.FileName = "Sources/LottieImages/success1.json";
-                    Btn_Go.Content = "  _GO!  ";
-                    break;
                 case "login failed":
                     LottieState.FileName = "Sources/LottieImages/error.json";
                     Btn_Go.Content = "_TRY AGAIN!";
@@ -58,11 +54,8 @@ namespace LibView.UI.Pages
 
         private void Btn_Go_Click(object sender, RoutedEventArgs e)
         {
-            if(_state == "login success")
-            {
-                NavigatorObject.Switch(new HomeScreen());
-            }
-            else if(_state == "login failed" || _state == "registration success")
+            
+            if(_state == "login failed" || _state == "registration success")
             {
                 NavigatorObject.Switch(new AuthorizationScreen());
             }
