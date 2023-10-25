@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,8 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LibView.Navigator;
 using LibView.Pages;
 using LibView.Services.Services;
+using LibView.UI.Pages;
 
 namespace LibView.Pages
 {
@@ -22,12 +25,13 @@ namespace LibView.Pages
     /// </summary>
     public partial class AuthorizationScreen : UserControl
     {
+        public static string backgroundURI = "pack://siteoforigin:,,,/Sources/Backgrounds/backgroundLogin3.jpg";
         public AuthorizationScreen()
         {
             InitializeComponent();
             LottieLogin.FileName = "Sources/LottieImages/Login.json";
             ImageBrush imageBrush = new ImageBrush();
-            imageBrush.ImageSource = new BitmapImage(new Uri("pack://siteoforigin:,,,/Sources/Backgrounds/backgroundLogin3.jpg"));
+            imageBrush.ImageSource = new BitmapImage(new Uri(backgroundURI));
             this.Background = imageBrush;
         }
 
@@ -39,25 +43,28 @@ namespace LibView.Pages
             //MessageBox.Show($"Its user {login}, {password}");
             var user = UserService.GetUser(login);
 
-            if (user != null)
+            
+            if (user != null && UserService.CheckPassword(user, password))
             {
-                if (UserService.CheckPassword(user, password))
-                {
-                    MessageBox.Show("Login success!");
-
-                }
-                else
-                {
-                    MessageBox.Show("Incorrect input!");
-                }
+                NavigatorObject.Switch(new AuthorizationStateScreen("login success"));
 
             }
+            else
+            {
+                NavigatorObject.Switch(new AuthorizationStateScreen("login failed"));
+            }
 
+            
         }
 
-        private void Btn_Cancel_Click(object sender, RoutedEventArgs e)
+        private void Btn_Registration_Click(object sender, RoutedEventArgs e)
         {
-            return;
+            NavigatorObject.Switch(new RegistrationScreen());
+        }
+
+        private void TxtBox_UserName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TxtBlock_LoginState.Text = "";
         }
     }
 }
