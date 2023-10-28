@@ -3,99 +3,95 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:LibView.Pages" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="{DynamicResource MaterialDesignDarkBackground}">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
-
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-        <materialDesign:Card x:Name="card_navigation" Width="auto" Grid.Column="0" Grid.RowSpan="2" Background="Transparent" >
-            <TabControl materialDesign:ColorZoneAssist.Mode="Standard"
-                    materialDesign:ElevationAssist.Elevation="Dp4"
-                    Style="{StaticResource MaterialDesignNavigationRailTabControl}"
-                        Background="Transparent">
-                <TabItem GotFocus="TabItemHome_GotFocus" >
-                    <TabItem.Header >
-                        <StackPanel Width="auto"  Height="auto">
-                            <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="Home" />
-                            <TextBlock HorizontalAlignment="Center" Text="Home" />
-                        </StackPanel>
-                    </TabItem.Header>
-                </TabItem>
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel Width="auto" Height="auto">
-                            <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="Library" />
-                            <TextBlock HorizontalAlignment="Center"  Text="Books" />
-                        </StackPanel>
-                    </TabItem.Header>
-                </TabItem>
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel Width="auto" Height="auto">
-                            <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="LetterPBox" />
-                            <TextBlock  HorizontalAlignment="Center" Text="Poetry" />
-                        </StackPanel>
-                    </TabItem.Header>
-                </TabItem>
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel  Width="auto" Height="auto">
-                            <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="MusicBoxMultiple" />
-                            <TextBlock HorizontalAlignment="Center" Text="Sounds" />
-                        </StackPanel>
-                    </TabItem.Header>
-                </TabItem>
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel Width="auto" Height="auto">
-                            <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="Search" />
-                            <TextBlock  HorizontalAlignment="Center" Text="FindBook" />
-                        </StackPanel>
-                    </TabItem.Header>
-                </TabItem>
-                
-            </TabControl>
-        </materialDesign:Card>
+            <materialDesign:ColorZone Padding="16" Mode="Inverted" Grid.Row="0" Background="{DynamicResource PrimaryHueLightBrush}">
+                <DockPanel>
+                    <materialDesign:PopupBox DockPanel.Dock="Right" >
+                        <materialDesign:PopupBox.ToggleContent>
+                            <materialDesign:PackIcon Kind="Settings" Height="25" Width="25" Foreground="{StaticResource PrimaryHueDarkForegroundBrush}" />
+                        </materialDesign:PopupBox.ToggleContent>
+                        <ListBox>
+                            <ListBoxItem x:Name="AddUserItem" Content="Add new user" />
+                            <ListBoxItem Content="Reset password" Selected="ListBoxItem_ResetPass" />
+                            <ListBoxItem Content="Exit!" Selected="ListBoxItem_Exit" />
+                        </ListBox>
+                    </materialDesign:PopupBox>
 
-        <materialDesign:ColorZone Padding="16" Mode="Inverted" Grid.Column="1" Background="{DynamicResource PrimaryHueLightBrush}">
-            <DockPanel>
-                <materialDesign:PopupBox DockPanel.Dock="Right" >
-                    <materialDesign:PopupBox.ToggleContent>
-                        <materialDesign:PackIcon Kind="Settings" Height="25" Width="25" Foreground="{StaticResource PrimaryHueDarkForegroundBrush}" />
-                    </materialDesign:PopupBox.ToggleContent>
-                    <ListBox>
-                        <ListBoxItem x:Name="AddUserItem" Content="Add new user" />
-                        <ListBoxItem Content="Reset password" Selected="ListBoxItem_ResetPass" />
-                        <ListBoxItem Content="Exit!" Selected="ListBoxItem_Exit" />
-                    </ListBox>
-                </materialDesign:PopupBox>
-                
-                <StackPanel Orientation="Horizontal">
-                    <ToggleButton x:Name="btn_MenuShow" Click="btn_MenuShow_Click" Style="{DynamicResource MaterialDesignHamburgerToggleButton}"></ToggleButton>
-                    <TextBlock x:Name="HelloStr"  Margin="16,0,0,0" VerticalAlignment="Center" Text="Hello " Style="{StaticResource MaterialDesignHeadline5TextBlock}" />
-                    <Button x:Name="UserIcon"  Style="{StaticResource MaterialDesignIconButton}" />
-                </StackPanel>
-            </DockPanel>
-        </materialDesign:ColorZone>
-        
-        
-        
+                    <StackPanel Orientation="Horizontal">
+                    <ToggleButton x:Name="btn_Navigation"  Checked="btn_Navigation_Checked" Unchecked="btn_Navigation_Unchecked" Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                        <TextBlock x:Name="HelloStr"  Margin="16,0,0,0" VerticalAlignment="Center" Text="Hello " Style="{StaticResource MaterialDesignHeadline5TextBlock}" />
+                        <Button x:Name="UserIcon"  Style="{StaticResource MaterialDesignIconButton}" />
+                       
+                    </StackPanel>
+                </DockPanel>
+            </materialDesign:ColorZone>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="menuMain" Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+
+                <materialDesign:Card x:Name="card_navigation" Width="auto"  Grid.Column="0" Grid.Row="1"  Background="#10FFFFFF"  >
+
+                <TabControl SelectionChanged="TabControl_SelectionChanged"
+                        materialDesign:ElevationAssist.Elevation="Dp4"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                            Background="Transparent">
+                    <TabItem x:Name="homeItem" IsSelected="False">
+                        <TabItem.Header>
+                            <StackPanel Width="auto" Height="auto">
+                                <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="Home" />
+                                <TextBlock HorizontalAlignment="Center"  Text="Home" />
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem x:Name="bookItem" IsSelected="False">
+                            <TabItem.Header>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="Library" />
+                                    <TextBlock HorizontalAlignment="Center"  Text="Books" />
+                                </StackPanel>
+                            </TabItem.Header>
+                        </TabItem>
+                        <TabItem x:Name="poetryItem">
+                            <TabItem.Header>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="LetterPBox" />
+                                    <TextBlock  HorizontalAlignment="Center" Text="Poetry" />
+                                </StackPanel>
+                            </TabItem.Header>
+                        </TabItem>
+                        <TabItem x:Name="songsItem">
+                            <TabItem.Header>
+                                <StackPanel  Width="auto" Height="auto">
+                                    <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="MusicBoxMultiple" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Songs" />
+                                </StackPanel>
+                            </TabItem.Header>
+                        </TabItem>
+                        <TabItem x:Name="findItem">
+                            <TabItem.Header>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="Search" />
+                                    <TextBlock  HorizontalAlignment="Center" Text="FindBook" />
+                                </StackPanel>
+                            </TabItem.Header>
+                        </TabItem>
+                    </TabControl>
+
+                </materialDesign:Card>
+            </Grid>
+
     </Grid>
 </UserControl>

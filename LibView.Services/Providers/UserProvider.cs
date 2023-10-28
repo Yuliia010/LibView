@@ -1,12 +1,7 @@
 ﻿using LibView.DAL.Models;
 using LibView.DAL.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LibView.Services.Providers
+namespace LibView.Domain.Providers
 {
     internal class UserProvider
     {

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibView.UI", "LibView\LibView.UI.csproj", "{F91F3CD5-33C9-4DF0-8D7C-977BD3021D40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibView.UI", "LibView\LibView.UI.csproj", "{F91F3CD5-33C9-4DF0-8D7C-977BD3021D40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibView.DAL", "LibView.DAL\LibView.DAL.csproj", "{F0FDD63E-AF69-43FA-AB30-BE6FE06743C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibView.DAL", "LibView.DAL\LibView.DAL.csproj", "{F0FDD63E-AF69-43FA-AB30-BE6FE06743C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibView.Services", "LibView.Services\LibView.Services.csproj", "{C6C74FE5-0C1E-4974-8E71-E68686DADBBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibView.Domain", "LibView.Services\LibView.Domain.csproj", "{C6C74FE5-0C1E-4974-8E71-E68686DADBBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

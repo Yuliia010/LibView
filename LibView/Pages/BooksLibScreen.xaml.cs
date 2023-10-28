@@ -1,11 +1,9 @@
 ﻿using LibView.DAL.Models;
-using LibView.Navigator;
 using LibView.Domain.UseCases;
-using LibView.UI.Pages;
+using LibView.Navigator;
+using LibView.Pages;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,26 +18,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LibView.Pages
+namespace LibView.UI.Pages
 {
     /// <summary>
-    /// Interaction logic for HomePage.xaml
+    /// Interaction logic for BooksLibScreen.xaml
     /// </summary>
-    public partial class HomeScreen : UserControl
+    public partial class BooksLibScreen : UserControl
     {
-        static public User CurrentUser { get; set; }
-
-        public HomeScreen(User currentUser)
+        public BooksLibScreen()
         {
             InitializeComponent();
-            CurrentUser = currentUser;
-            this.DataContext = CurrentUser;
             DefaultSet();
         }
-
         private void DefaultSet()
         {
-            HelloStr.Text = $"Hello {CurrentUser.Name}!  ";
+
+            HelloStr.Text = $"Hello {HomeScreen.CurrentUser.Name}!  ";
             BitmapImage bitmapImage = new BitmapImage(new Uri("pack://siteoforigin:,,,/Sources/Images/user.png"));
 
             Image image = new Image
@@ -49,7 +43,7 @@ namespace LibView.Pages
 
             UserIcon.Content = image;
 
-            if (!CurrentUser.IsAdmin)
+            if (!HomeScreen.CurrentUser.IsAdmin)
             {
                 AddUserItem.Visibility = Visibility.Hidden;
                 AddUserItem.Height = 0;
@@ -69,6 +63,9 @@ namespace LibView.Pages
 
             //TextService.Add(newtext);
 
+            List<Text> list = TextUseCase.GetAllTexts();
+
+            lv_BooksTransl.ItemsSource = list;
 
             MenuVisabil(btn_Navigation);
         }
@@ -85,11 +82,6 @@ namespace LibView.Pages
                 card_navigation.Width = 0;
             }
         }
-        private void btn_Navigation_Checked(object sender, RoutedEventArgs e)
-        {
-            ToggleButton btn = (ToggleButton)sender;
-            MenuVisabil(btn);
-        }
 
         private void ListBoxItem_Exit(object sender, RoutedEventArgs e)
         {
@@ -105,26 +97,38 @@ namespace LibView.Pages
         {
 
         }
+        private void btn_Navigation_Checked(object sender, RoutedEventArgs e)
+        {
+            ToggleButton btn = (ToggleButton)sender;
+            MenuVisabil(btn);
+        }
 
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TabControl tabControl = (TabControl)sender;
+            TabItem selectedTabItem = (TabItem)tabControl.SelectedItem;
+            string selectedTabName = selectedTabItem.Name;
+            switch (selectedTabName)
+            {
+                case "homeItem":
+                    NavigatorObject.Switch(new HomeScreen(HomeScreen.CurrentUser));
+                    break;
+                case "bookItem":
+                    break;
+                case "poetryItem":
+                    break;
+                case "songsItem":
+                    break;
+                case "findItem":
+                    break;
+            }
+        }
         private void btn_Navigation_Unchecked(object sender, RoutedEventArgs e)
         {
             ToggleButton btn = (ToggleButton)sender;
             MenuVisabil(btn);
         }
 
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TabControl tabControl = (TabControl)sender;
-            TabItem selectedTabItem = (TabItem)tabControl.SelectedItem;
-
-            string selectedTabName = selectedTabItem.Name;
-
-            switch (selectedTabName)
-            {
-                case "bookItem":
-                    NavigatorObject.Switch(new BooksLibScreen());
-                    break;
-            }
-        }
     }
 }

@@ -21,6 +21,48 @@ namespace LibView.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("LibView.DAL.Models.Text", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EngText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TranslText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Texts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Test on adding a new object",
+                            EngText = "Some text",
+                            Name = "Testing",
+                            TranslText = "Якийсь текст"
+                        });
+                });
+
             modelBuilder.Entity("LibView.DAL.Models.User", b =>
                 {
                     b.Property<int>("Id")

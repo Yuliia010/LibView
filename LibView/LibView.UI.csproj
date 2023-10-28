@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LibView.Services\LibView.Services.csproj" />
+    <ProjectReference Include="..\LibView.Services\LibView.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +28,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Sources\Backgrounds\purple-and-blue-background.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sources\Images\default_translate_icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Sources\Images\user.png">

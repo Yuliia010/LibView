@@ -25,6 +25,7 @@ namespace LibView
         public MainWindow()
         {
             InitializeComponent();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             NavigatorObject.pageSwitcher = this;
             NavigatorObject.Switch(new AuthorizationScreen());
         }

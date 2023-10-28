@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LibView.Navigator;
 using LibView.Pages;
-using LibView.Services.Services;
+using LibView.Domain.UseCases;
 using LibView.UI.Pages;
 
 namespace LibView.Pages
@@ -39,10 +39,10 @@ namespace LibView.Pages
         {
             string login = TxtBox_UserName.Text.Trim();
             string password = PassBox_Password.Password;
-            var user = UserService.GetUser(login);
+            var user = UserUseCase.GetUser(login);
 
             
-            if (user != null && UserService.CheckPassword(user, password))
+            if (user != null && UserUseCase.CheckPassword(user, password))
             {
                 NavigatorObject.Switch(new HomeScreen(user));
             }

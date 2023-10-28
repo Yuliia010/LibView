@@ -1,7 +1,7 @@
 ﻿using LibView.DAL.Models;
 using LibView.Navigator;
 using LibView.Pages;
-using LibView.Services.Services;
+using LibView.Domain.UseCases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +44,7 @@ namespace LibView.UI.Pages
                 newUser.password = PassBox_Password.Password;
                 newUser.IsAdmin = CheckB_isAdmin.IsChecked == true;
 
-                UserService.Add(newUser);
+                UserUseCase.Add(newUser);
 
                 NavigatorObject.Switch(new AuthorizationStateScreen("registration success"));
 

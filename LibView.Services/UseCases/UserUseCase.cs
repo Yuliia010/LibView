@@ -1,16 +1,16 @@
 ﻿using LibView.DAL;
 using LibView.DAL.Models;
 using LibView.DAL.Repositories;
-using LibView.Services.Providers;
+using LibView.Domain.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibView.Services.Services
+namespace LibView.Domain.UseCases
 {
-    public class UserService
+    public class UserUseCase
     {
         static private LibViewContext _context = new LibViewContext();
         static private Repository<User> _repository = new Repository<User>(_context);
