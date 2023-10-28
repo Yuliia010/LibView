@@ -15,7 +15,7 @@ namespace LibView.Domain.UseCases
         static private LibViewContext _context = new LibViewContext();
         static private Repository<Text> _repository = new Repository<Text>(_context);
         static private TextProvider _provider = new TextProvider(_repository);
-        static private List<Text> _texts => _provider.GetTexts().ToList();
+        static public List<Text> _texts => _provider.GetTexts().ToList();
 
         static public void Add(Text text)
         {

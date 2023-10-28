@@ -1,5 +1,8 @@
-﻿using LibView.Navigator;
+﻿using LibView.DAL.Models;
+using LibView.Domain.UseCases;
+using LibView.Navigator;
 using LibView.Pages;
+using LibView.UI.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +25,12 @@ namespace LibView
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
+            BooksLibScreen.bookList = TextUseCase._texts;
+
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             NavigatorObject.pageSwitcher = this;
             NavigatorObject.Switch(new AuthorizationScreen());

@@ -25,6 +25,7 @@ namespace LibView.UI.Pages
     /// </summary>
     public partial class BooksLibScreen : UserControl
     {
+        public static List<Text> bookList;
         public BooksLibScreen()
         {
             InitializeComponent();
@@ -63,9 +64,8 @@ namespace LibView.UI.Pages
 
             //TextService.Add(newtext);
 
-            List<Text> list = TextUseCase.GetAllTexts();
-
-            lv_BooksTransl.ItemsSource = list;
+            //lv_BooksTransl.ItemsSource = TextUseCase.GetAllTexts(); 
+            lv_BooksTransl.ItemsSource = bookList;
 
             MenuVisabil(btn_Navigation);
         }
@@ -130,5 +130,9 @@ namespace LibView.UI.Pages
             MenuVisabil(btn);
         }
 
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            NavigatorObject.Switch(new AddTextScreen());
+        }
     }
 }

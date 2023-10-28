@@ -98,10 +98,24 @@
                     <RowDefinition Height="0.2*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <Button Content="Search" Name="btn_Search" Margin="5,0,0,0"/>
-                    <TextBox Width="200" Height="{Binding ElementName=btn_Search, Path=ActualHeight}" materialDesign:HintAssist.Hint="Enter name" Margin="10,0,0,0"/>
-                </StackPanel>
+                <Grid  Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Content="Search" Name="btn_Search" Margin="5,0,0,0"/>
+                    <TextBox Grid.Column="1" Width="200" Height="{Binding ElementName=btn_Search, Path=ActualHeight}" materialDesign:HintAssist.Hint="Enter name" Margin="10,0,0,0"/>
+
+                    <Button Grid.Column="3" Width="45" Height="45"
+                            Style="{StaticResource MaterialDesignFloatingActionSecondaryButton}"
+                            ToolTip="MaterialDesignFloatingActionSecondaryButton"
+                            Click="btnAdd_Click">
+                        <materialDesign:PackIcon Width="25" Height="25" Kind="Add"  />
+                    </Button>
+
+                </Grid>
 
                 <ListView x:Name="lv_BooksTransl" Grid.Row="1" Grid.Column="1" >
                     <ListView.Style>
