@@ -1,12 +1,12 @@
-﻿using LibView.DAL.Models;
-using LibView.DAL.Repositories;
-using LibView.DAL;
+﻿using LibView.DAL;
 using LibView.Domain.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LibView.DAL.Models;
+using LibView.DAL.Repositories;
 
 namespace LibView.Domain.UseCases
 {

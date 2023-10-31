@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:LibView.Pages" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="{DynamicResource MaterialDesignDarkBackground}">
-    <materialDesign:Card Background="#20FFFFFF" Margin="20" UniformCornerRadius="20" Padding="10">
+    <materialDesign:Card Background="#b39ddb" Margin="20" UniformCornerRadius="20" Padding="10">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -15,40 +15,47 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition />
+                <RowDefinition Height="1.2*"/>
+                <RowDefinition Height="1.3*"/>
+                <RowDefinition x:Name="TextArea" Height="3*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <TextBox x:Name="TxtBox_TextName" Grid.Row="1" Margin="5" Grid.Column="1" Grid.ColumnSpan="2" FontSize="15"  materialDesign:HintAssist.Hint="Name" VerticalAlignment="Bottom" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"/>
-            <TextBox Grid.Column="1" Grid.Row="2" Margin="5"  VerticalAlignment="Top" materialDesign:HintAssist.Hint="This is a description area"
+            <TextBox x:Name="TxtBox_TextName" Grid.Row="1" Margin="5,1,5,2" Grid.Column="1" Grid.ColumnSpan="2" FontSize="15"  materialDesign:HintAssist.Hint="Name" VerticalAlignment="Bottom" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox x:Name="TxtBox_Description" Grid.Column="1" Grid.Row="2" Margin="5,3,5,1"  VerticalAlignment="Top" materialDesign:HintAssist.Hint="This is a description area"
                  AcceptsReturn="True" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  TextWrapping="Wrap"
                  VerticalScrollBarVisibility="Auto" />
-            <TextBox Grid.Column="0" Margin="5" Grid.Row="3" Height="90" VerticalAlignment="Top" materialDesign:HintAssist.Hint="This is a text area"
+            <materialDesign:Card Background="#90b39ddb" Grid.Column="0" Grid.ColumnSpan=" 2" Margin="5,1,5,1" Grid.Row="3"></materialDesign:Card>
+            <TextBox x:Name="TxtBox_Text" Grid.Column="0" Margin="5,1,5,1" Grid.Row="3"   VerticalAlignment="Top" materialDesign:HintAssist.Hint="This is a text area"
                  AcceptsReturn="True" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  TextWrapping="Wrap"
                  VerticalScrollBarVisibility="Auto" />
-            <TextBox Grid.Column="1" Grid.Row="3" Margin="5" Height="90" VerticalAlignment="Top" materialDesign:HintAssist.Hint="This is a translate text area"
+            <TextBox x:Name="TxtBox_TranslText" Grid.Column="1" Grid.Row="3" Margin="5,1,5,1"  VerticalAlignment="Top" materialDesign:HintAssist.Hint="This is a translate text area"
                  AcceptsReturn="True" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  TextWrapping="Wrap"
                  VerticalScrollBarVisibility="Auto" />
+            <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+                <Label Content="Add picture" Margin="5"  VerticalAlignment="Center" />
+                <Button  HorizontalAlignment="Left" VerticalAlignment="Center"  Style="{StaticResource MaterialDesignIconButton}" Click="AddPic_Click">
+                    <materialDesign:PackIcon  Kind="Add"></materialDesign:PackIcon>
 
-            <Label Content="Add picture" Margin="5"  VerticalAlignment="Center" />
+                </Button>
+            </StackPanel>
+
+           
             <Image x:Name="Image" Width="150" Height="150" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2"></Image>
-            <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Style="{StaticResource MaterialDesignIconButton}" Click="AddPic_Click">
-                <materialDesign:PackIcon  Kind="Add"></materialDesign:PackIcon>
-
-            </Button>
+            
             <Button Grid.Column="1" Grid.Row="5"  Width="200" Content="Add" Margin="0,10,0,10"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
-                ToolTip="MaterialDesignFlatSecondaryMidBgButton" />
+                ToolTip="MaterialDesignFlatSecondaryMidBgButton" 
+                Click="Add_Click"/>
             <Button Width="200" Content="CENCEL"  Grid.Column="0" Grid.Row="5"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignFlatDarkBgButton}"
-                ToolTip="MaterialDesignFlatDarkButton" />
+                ToolTip="MaterialDesignFlatDarkButton"
+                Click="Cencel_Click"/>
         </Grid>
     </materialDesign:Card>
     

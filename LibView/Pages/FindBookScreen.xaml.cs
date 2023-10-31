@@ -1,10 +1,8 @@
-﻿using LibView.Navigator;
-using LibView.Domain.UseCases;
-using LibView.UI.Pages;
+﻿using LibView.Domain.UseCases;
+using LibView.Navigator;
+using LibView.Pages;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,28 +16,29 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using LibView.DAL.Models;
 
-namespace LibView.Pages
+namespace LibView.UI.Pages
 {
     /// <summary>
-    /// Interaction logic for HomePage.xaml
+    /// Interaction logic for FindBookScreen.xaml
     /// </summary>
-    public partial class HomeScreen : UserControl
+    public partial class FindBookScreen : UserControl
     {
-        static public User CurrentUser { get; set; }
-
-        public HomeScreen(User currentUser)
+        public FindBookScreen()
         {
             InitializeComponent();
-            CurrentUser = currentUser;
-            this.DataContext = CurrentUser;
             DefaultSet();
+        }
+
+        private void Update()
+        {
+            lv_Books.ItemsSource = TextUseCase.GetAllTexts();
         }
 
         private void DefaultSet()
         {
-            HelloStr.Text = $"Hello {CurrentUser.Name}!  ";
+
+            HelloStr.Text = $"Hello {HomeScreen.CurrentUser.Name}!  ";
             BitmapImage bitmapImage = new BitmapImage(new Uri("pack://siteoforigin:,,,/Sources/Images/user.png"));
 
             Image image = new Image
@@ -49,30 +48,35 @@ namespace LibView.Pages
 
             UserIcon.Content = image;
 
-            if (!CurrentUser.IsAdmin)
+            if (!HomeScreen.CurrentUser.IsAdmin)
             {
                 AddUserItem.Visibility = Visibility.Hidden;
                 AddUserItem.Height = 0;
             }
 
 
-            //byte[] byteImage = File.ReadAllBytes("Sources/Images/default_translate_icon.png");
-            //Text newtext = new Text()
-            //{
-            //    Name = "Text2",
-            //    Description = "Description 2 nnnnnnnnnnn n nnnnnnn nnnn nnnnnnnnnnn nnnnnnnnnn nnnnnnnnnnnn nnnnnnnn nnnnn nnnnnnnn nnnnnnnn",
-            //    EngText = "some engl text",
-            //    TranslText = "translate of some engl text",
-            //    Image = byteImage
-
-            //};
-
-            //TextService.Add(newtext);
-
-
+            Update();
             MenuVisabil(btn_Navigation);
         }
+        private void lv_Books_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int selectedIndex = lv_Books.SelectedIndex + 1;
 
+            if (selectedIndex >= 0)
+            {
+               // var selectedText = TextUseCase.GetText(selectedIndex);
+               // NavigatorObject.Switch(new TextView(selectedText));
+            }
+        }
+        private void ListBoxItem_Exit(object sender, RoutedEventArgs e)
+        {
+            NavigatorObject.Switch(new AuthorizationScreen());
+        }
+
+        private void ListBoxItem_ResetPass(object sender, RoutedEventArgs e)
+        {
+
+        }
         private void MenuVisabil(ToggleButton btn)
         {
             if (btn.IsChecked == true)
@@ -85,45 +89,38 @@ namespace LibView.Pages
                 card_navigation.Width = 0;
             }
         }
+
         private void btn_Navigation_Checked(object sender, RoutedEventArgs e)
         {
             ToggleButton btn = (ToggleButton)sender;
             MenuVisabil(btn);
         }
 
-        private void ListBoxItem_Exit(object sender, RoutedEventArgs e)
-        {
-            NavigatorObject.Switch(new AuthorizationScreen());
-        }
-
-
-        private void ListBoxItem_ResetPass(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_Navigation_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ToggleButton btn = (ToggleButton)sender;
-            MenuVisabil(btn);
-        }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TabControl tabControl = (TabControl)sender;
             TabItem selectedTabItem = (TabItem)tabControl.SelectedItem;
-
             string selectedTabName = selectedTabItem.Name;
-
             switch (selectedTabName)
             {
+                case "homeItem":
+                    NavigatorObject.Switch(new HomeScreen(HomeScreen.CurrentUser));
+                    break;
                 case "bookItem":
-                    NavigatorObject.Switch(new BooksLibScreen());
+                    break;
+                case "poetryItem":
+                    break;
+                case "songsItem":
                     break;
                 case "findItem":
-                    NavigatorObject.Switch(new FindBookScreen());
                     break;
             }
+        }
+        private void btn_Navigation_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ToggleButton btn = (ToggleButton)sender;
+            MenuVisabil(btn);
         }
     }
 }

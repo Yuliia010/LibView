@@ -1,8 +1,5 @@
 ﻿using LibView.DAL.Models;
-using LibView.Domain.UseCases;
 using LibView.Navigator;
-using LibView.Pages;
-using LibView.UI.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,26 +15,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LibView
+namespace LibView.UI.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for TextView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TextView : UserControl
     {
-        
-        public MainWindow()
+        public TextView(Text text)
         {
             InitializeComponent();
-            
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            NavigatorObject.pageSwitcher = this;
-            NavigatorObject.Switch(new AuthorizationScreen());
+            this.DataContext = text;
         }
 
-        public void Navigate(UserControl nextPage)
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = nextPage;
+            NavigatorObject.Switch(new BooksLibScreen());
         }
     }
 }

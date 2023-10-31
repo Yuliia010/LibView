@@ -25,12 +25,18 @@ namespace LibView.UI.Pages
     /// </summary>
     public partial class BooksLibScreen : UserControl
     {
-        public static List<Text> bookList;
+        public List<Text> bookList;
         public BooksLibScreen()
         {
             InitializeComponent();
             DefaultSet();
         }
+       
+        private void Update()
+        {
+            lv_BooksTransl.ItemsSource = TextUseCase.GetAllTexts();
+        }
+
         private void DefaultSet()
         {
 
@@ -51,22 +57,7 @@ namespace LibView.UI.Pages
             }
 
 
-            //byte[] byteImage = File.ReadAllBytes("Sources/Images/default_translate_icon.png");
-            //Text newtext = new Text()
-            //{
-            //    Name = "Text2",
-            //    Description = "Description 2 nnnnnnnnnnn n nnnnnnn nnnn nnnnnnnnnnn nnnnnnnnnn nnnnnnnnnnnn nnnnnnnn nnnnn nnnnnnnn nnnnnnnn",
-            //    EngText = "some engl text",
-            //    TranslText = "translate of some engl text",
-            //    Image = byteImage
-
-            //};
-
-            //TextService.Add(newtext);
-
-            //lv_BooksTransl.ItemsSource = TextUseCase.GetAllTexts(); 
-            lv_BooksTransl.ItemsSource = bookList;
-
+            Update();
             MenuVisabil(btn_Navigation);
         }
 
@@ -86,11 +77,6 @@ namespace LibView.UI.Pages
         private void ListBoxItem_Exit(object sender, RoutedEventArgs e)
         {
             NavigatorObject.Switch(new AuthorizationScreen());
-        }
-
-        private void TabItemHome_GotFocus(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void ListBoxItem_ResetPass(object sender, RoutedEventArgs e)
@@ -133,6 +119,17 @@ namespace LibView.UI.Pages
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             NavigatorObject.Switch(new AddTextScreen());
+        }
+
+        private void lv_BooksTransl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int selectedIndex = lv_BooksTransl.SelectedIndex + 1;
+
+            if (selectedIndex >= 0)
+            {
+               var selectedText = TextUseCase.GetText(selectedIndex);
+               NavigatorObject.Switch(new TextView( selectedText));
+            }
         }
     }
 }

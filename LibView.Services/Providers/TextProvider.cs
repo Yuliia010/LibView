@@ -1,5 +1,6 @@
 ﻿using LibView.DAL.Models;
 using LibView.DAL.Repositories;
+
 namespace LibView.Domain.Providers
 {
     internal class TextProvider

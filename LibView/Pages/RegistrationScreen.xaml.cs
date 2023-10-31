@@ -1,5 +1,4 @@
-﻿using LibView.DAL.Models;
-using LibView.Navigator;
+﻿using LibView.Navigator;
 using LibView.Pages;
 using LibView.Domain.UseCases;
 using System;
@@ -17,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using LibView.DAL.Models;
 
 namespace LibView.UI.Pages
 {
