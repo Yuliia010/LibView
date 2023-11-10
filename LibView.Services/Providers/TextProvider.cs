@@ -1,5 +1,5 @@
-﻿using LibView.DAL.Models;
-using LibView.DAL.Repositories;
+﻿using LibView.DAL.Local.DataBase.Models;
+using LibView.DAL.Local.DataBase.Repositories;
 
 namespace LibView.Domain.Providers
 {

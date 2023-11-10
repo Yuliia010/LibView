@@ -1,4 +1,6 @@
-﻿using LibView.Domain.UseCases;
+﻿using Azure;
+using LibView.DAL.Remote.OpenLibraryApiCore.Models;
+using LibView.Domain.UseCases;
 using LibView.Navigator;
 using LibView.Pages;
 using System;
@@ -24,15 +26,45 @@ namespace LibView.UI.Pages
     /// </summary>
     public partial class FindBookScreen : UserControl
     {
+        JsonBookUseCase searchList;
+        List<Book> books;
+        private int currentPage = 1;
+        private int maxPages;
         public FindBookScreen()
         {
             InitializeComponent();
+           
             DefaultSet();
         }
 
         private void Update()
         {
-            lv_Books.ItemsSource = TextUseCase.GetAllTexts();
+            books = searchList.GetPage(currentPage);
+            maxPages = searchList.GetMaxPages();
+            tb_maxPages.Text = maxPages.ToString();
+            if (books != null)
+            {
+                lv_Books.ItemsSource = books;
+                tb_curPage.Text = currentPage.ToString();
+
+                if (currentPage == 1)
+                {
+                    btn_NextPage.IsEnabled = true;
+                    btn_PrevPage.IsEnabled = false;
+                }
+                else if (currentPage == maxPages)
+                {
+                    btn_NextPage.IsEnabled = false;
+                    btn_PrevPage.IsEnabled = true;
+
+                }
+                else
+                {
+                    btn_PrevPage.IsEnabled = true;
+                    btn_NextPage.IsEnabled = true;
+                }
+            }
+           
         }
 
         private void DefaultSet()
@@ -54,19 +86,13 @@ namespace LibView.UI.Pages
                 AddUserItem.Height = 0;
             }
 
-
-            Update();
             MenuVisabil(btn_Navigation);
         }
         private void lv_Books_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int selectedIndex = lv_Books.SelectedIndex + 1;
-
-            if (selectedIndex >= 0)
-            {
-               // var selectedText = TextUseCase.GetText(selectedIndex);
-               // NavigatorObject.Switch(new TextView(selectedText));
-            }
+            Book selectedBook = (Book)lv_Books.SelectedItem;
+            NavigatorObject.Switch(new ViewBookScreen(selectedBook));
+          
         }
         private void ListBoxItem_Exit(object sender, RoutedEventArgs e)
         {
@@ -108,10 +134,7 @@ namespace LibView.UI.Pages
                     NavigatorObject.Switch(new HomeScreen(HomeScreen.CurrentUser));
                     break;
                 case "bookItem":
-                    break;
-                case "poetryItem":
-                    break;
-                case "songsItem":
+                    NavigatorObject.Switch(new BooksLibScreen());
                     break;
                 case "findItem":
                     break;
@@ -121,6 +144,26 @@ namespace LibView.UI.Pages
         {
             ToggleButton btn = (ToggleButton)sender;
             MenuVisabil(btn);
+        }
+
+        private void btn_Search_Click(object sender, RoutedEventArgs e)
+        {
+            searchList = new JsonBookUseCase(tb_searchSrt.Text);
+           
+            Update();
+            
+        }
+
+        private void btn_NextPage_Click(object sender, RoutedEventArgs e)
+        {
+            currentPage++;
+            Update();
+        }
+
+        private void btn_PrevPage_Click(object sender, RoutedEventArgs e)
+        {
+            currentPage--;
+            Update();
         }
     }
 }

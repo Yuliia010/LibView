@@ -65,7 +65,7 @@
                             </StackPanel>
                         </TabItem.Header>
                     </TabItem>
-                    <TabItem x:Name="poetryItem">
+                    <!--<TabItem x:Name="poetryItem">
                         <TabItem.Header>
                             <StackPanel Width="auto" Height="auto">
                                 <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="LetterPBox" />
@@ -80,7 +80,7 @@
                                 <TextBlock HorizontalAlignment="Center" Text="Songs" />
                             </StackPanel>
                         </TabItem.Header>
-                    </TabItem>
+                    </TabItem>-->
                     <TabItem x:Name="findItem">
                         <TabItem.Header>
                             <StackPanel Width="auto" Height="auto">

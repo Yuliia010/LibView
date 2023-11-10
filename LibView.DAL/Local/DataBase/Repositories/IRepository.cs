@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibView.DAL.Repositories
+namespace LibView.DAL.Local.DataBase.Repositories
 {
     public interface IRepository<T> where T : class
     {

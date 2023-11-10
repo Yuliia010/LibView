@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibView.DAL.Models
+namespace LibView.DAL.Local.DataBase.Models
 {
     public class User
     {

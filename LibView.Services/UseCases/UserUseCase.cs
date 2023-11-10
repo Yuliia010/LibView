@@ -1,6 +1,6 @@
-﻿using LibView.DAL;
-using LibView.DAL.Models;
-using LibView.DAL.Repositories;
+﻿using LibView.DAL.Local.DataBase;
+using LibView.DAL.Local.DataBase.Models;
+using LibView.DAL.Local.DataBase.Repositories;
 using LibView.Domain.Providers;
 using System;
 using System.Collections.Generic;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibView.DAL.Repositories
+namespace LibView.DAL.Local.DataBase.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {

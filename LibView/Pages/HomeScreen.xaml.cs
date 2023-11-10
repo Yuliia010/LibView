@@ -18,7 +18,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using LibView.DAL.Models;
+using LibView.DAL.Local.DataBase.Models;
+using LibView.Domain.TranslateCore;
 
 namespace LibView.Pages
 {
@@ -124,6 +125,12 @@ namespace LibView.Pages
                     NavigatorObject.Switch(new FindBookScreen());
                     break;
             }
+        }
+
+        private async void btn_translate_Click(object sender, RoutedEventArgs e)
+        {
+            string translation = await Translate.GetTranslate(tb_toTranslate.Text);
+           tb_Translated.Text = translation;    
         }
     }
 }

@@ -65,22 +65,30 @@
                             </StackPanel>
                         </TabItem.Header>
                     </TabItem>
-                    <TabItem x:Name="poetryItem" IsSelected="False">
+                    <!--<TabItem x:Name="poetryItem" IsSelected="False">
                         <TabItem.Header>
                             <StackPanel Width="auto" Height="auto">
                                 <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="LetterPBox" />
                                 <TextBlock  HorizontalAlignment="Center" Text="Poetry" />
                             </StackPanel>
                         </TabItem.Header>
-                    </TabItem>
-                    <TabItem x:Name="songsItem" IsSelected="False">
+                    </TabItem>-->
+                    <!--<TabItem x:Name="songsItem" IsSelected="False">
                         <TabItem.Header>
                             <StackPanel  Width="auto" Height="auto">
                                 <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="MusicBoxMultiple" />
                                 <TextBlock HorizontalAlignment="Center" Text="Songs" />
                             </StackPanel>
                         </TabItem.Header>
-                    </TabItem>
+                    </TabItem>-->
+                    <!--<TabItem x:Name="songsItem" IsSelected="False">
+                        <TabItem.Header>
+                            <StackPanel  Width="auto" Height="auto">
+                                <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="MusicBoxMultiple" />
+                                <TextBlock HorizontalAlignment="Center" Text="Songs" />
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>-->
                     <TabItem x:Name="findItem" IsSelected="True">
                         <TabItem.Header>
                             <StackPanel Width="auto" Height="auto">
@@ -101,14 +109,22 @@
                 <Grid  Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Content="Search" Name="btn_Search" Margin="5,0,0,0"/>
-                    <TextBox Grid.Column="1" Width="200" Height="{Binding ElementName=btn_Search, Path=ActualHeight}" materialDesign:HintAssist.Hint="Enter name" Margin="10,0,0,0"/>
-
-
+                    <Button Grid.Column="0" Content="Search" Name="btn_Search" Margin="5,0,0,0" Click="btn_Search_Click"/>
+                    <TextBox x:Name="tb_searchSrt" Grid.Column="1" Width="200" Height="{Binding ElementName=btn_Search, Path=ActualHeight}" materialDesign:HintAssist.Hint="Enter name" Margin="10,0,0,0"/>
+                    <Button  Grid.Column="5" Content="Next" Name="btn_NextPage" Margin="5,0,0,0" Click="btn_NextPage_Click"/>
+                    <Button  Grid.Column="3" Content="Prev" Name="btn_PrevPage" Margin="5,0,0,0" Click="btn_PrevPage_Click"/>
+                    <StackPanel Orientation="Horizontal" Grid.Column="4" HorizontalAlignment="Center">
+                        <TextBlock x:Name="tb_curPage" FontSize="15" Text="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="/" FontSize="15" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="tb_maxPages" FontSize="15" Text="0" VerticalAlignment="Center"/>
+                    </StackPanel>
+    
                 </Grid>
 
                 <ListView x:Name="lv_Books" Grid.Row="1" Grid.Column="1" SelectionChanged="lv_Books_SelectionChanged" >
@@ -121,32 +137,30 @@
                     </ListView.Style>
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <UniformGrid  Columns="3" Width="{Binding ElementName=ListBookTranslGrid, Path=ActualWidth}"  />
+                            <UniformGrid  Columns="3" HorizontalAlignment="Center" />
+                          
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <materialDesign:Card x:Name="cardBookList"  Margin="3" Background="#20FFFFFF">
-                                <StackPanel Orientation="Horizontal" Margin="3">
-                                    <Grid Width="{Binding ElementName=cardBookList, Path=ActualWidth}" >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="auto" />
-                                            <ColumnDefinition Width ="1*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source="{Binding Image}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Width="80" Height="80"></Image>
-                                        <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" TextWrapping="Wrap">
-                                                            <Run Text="Name: " FontWeight="Bold" />
-                                                            <Run Text="{Binding Name}" />
-                                        </TextBlock>
-                                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" TextWrapping="Wrap">
-                                                            <Run Text="Description: " FontWeight="Bold" />
-                                                            <Run Text="{Binding Description}" />
-                                        </TextBlock>
-                                    </Grid>
+                            <materialDesign:Card x:Name="cardBookList"  Margin="3" Background="#20FFFFFF" HorizontalContentAlignment="Center" VerticalContentAlignment="Top">
+                                <StackPanel Margin="3">
+                                    <Image Source="{Binding ImageUri}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" ></Image>
+                                    <TextBlock Margin="5" Text="{Binding Title}" TextWrapping="Wrap"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Margin="5" Text="Publish year: "/>
+                                        <TextBlock Margin="5" Text="{Binding FirstPublishYear}"  />
+                                    </StackPanel>
+                                    <StackPanel >
+                                        <TextBlock Margin="5" Text="Language: " Grid.Row="0" />
+                                        <ListBox ItemsSource="{Binding Language}" IsEnabled="False" >
+                                            <ListBox.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel Orientation="Horizontal" />
+                                                </ItemsPanelTemplate>
+                                            </ListBox.ItemsPanel>
+                                        </ListBox>
+                                    </StackPanel>
                                 </StackPanel>
                             </materialDesign:Card>
                         </DataTemplate>

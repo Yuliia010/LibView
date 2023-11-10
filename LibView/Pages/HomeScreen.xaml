@@ -64,7 +64,7 @@
                                 </StackPanel>
                             </TabItem.Header>
                         </TabItem>
-                        <TabItem x:Name="poetryItem">
+                        <!--<TabItem x:Name="poetryItem">
                             <TabItem.Header>
                                 <StackPanel Width="auto" Height="auto">
                                     <materialDesign:PackIcon Width="24" Height="24" HorizontalAlignment="Center" Kind="LetterPBox" />
@@ -79,7 +79,7 @@
                                     <TextBlock HorizontalAlignment="Center" Text="Songs" />
                                 </StackPanel>
                             </TabItem.Header>
-                        </TabItem>
+                        </TabItem>-->
                         <TabItem x:Name="findItem">
                             <TabItem.Header>
                                 <StackPanel Width="auto" Height="auto">
@@ -91,6 +91,18 @@
                     </TabControl>
 
                 </materialDesign:Card>
+
+            
+            <materialDesign:Card Grid.Column="1" Background="#30FFFFFF" Margin="90" UniformCornerRadius="40">
+                <materialDesign:Card  Background="{DynamicResource PrimaryHueLightBrush}" Margin="10" UniformCornerRadius="40">
+                    <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBox x:Name="tb_toTranslate" FontSize="14" Width="500" TextAlignment="Center" TextWrapping="Wrap"></TextBox>
+                        <Button Content="Translate" Name="btn_translate" Click="btn_translate_Click" Margin="5"/>
+                        <TextBox x:Name="tb_Translated" Width="500" FontSize="14" TextAlignment="Center" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </materialDesign:Card>
+            </materialDesign:Card>
+                
             </Grid>
 
     </Grid>

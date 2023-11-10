@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="LibView.UI.Pages.ViewBookScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:LibView.Pages" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="{DynamicResource MaterialDesignDarkBackground}">
+    <materialDesign:Card Background="#b39ddb" Margin="20" UniformCornerRadius="20" Padding="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition x:Name="colWidth"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+
+            <Image x:Name="Image" Margin="7"  Grid.Column="0" Grid.Row="1"  Source="{Binding ImageUri}"></Image>
+            <Grid Grid.Column="1" Grid.Row="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <materialDesign:Card Background="#20FFFFFF" Margin="5" Grid.Row="0">
+                    <Label Foreground="White" Margin="2" Style="{StaticResource MaterialDesignLabel}" FontSize="21" Content="{Binding Title}"></Label>
+                </materialDesign:Card>
+                <ScrollViewer Grid.Row="1">
+                    <TextBlock  Foreground="White"  Margin="2" Style="{StaticResource  MaterialDesignBody2TextBlock}" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" FontSize="14" Text="{Binding Description}"/>
+                </ScrollViewer>
+               
+            </Grid>
+            <StackPanel Grid.Row="2">
+
+                <TextBlock Text="Subjects:" FontWeight="Bold" Foreground="White"  Margin="2" Style="{StaticResource  MaterialDesignBody2TextBlock}" ></TextBlock>
+                <ComboBox ItemsSource="{Binding Subjects}" SelectedIndex="0" Margin="0,0,0,10">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="Authors:" FontWeight="Bold"  Foreground="White"  Margin="2" Style="{StaticResource  MaterialDesignBody2TextBlock}" ></TextBlock>
+                <ComboBox ItemsSource="{Binding Authors}" SelectedIndex="0"  Margin="0,0,0,10">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="First Publish Year:" FontWeight="Bold" Foreground="White"  Margin="2" Style="{StaticResource  MaterialDesignBody2TextBlock}"/>
+                    <TextBlock Text="{Binding FirstPublishYear}" Foreground="White"  Margin="2" Style="{StaticResource  MaterialDesignBody2TextBlock}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Has Full Text:" Foreground="White" FontWeight="Bold" Margin="2" Style="{StaticResource  MaterialDesignBody2TextBlock}"/>
+                    <TextBlock Text="{Binding HasFullText}" Foreground="White"  Margin="2" Style="{StaticResource  MaterialDesignBody2TextBlock}"/>
+                </StackPanel>
+                <TextBlock Text="Language:" FontWeight="Bold" Foreground="White"  Margin="2" Style="{StaticResource  MaterialDesignBody2TextBlock}"/>
+                
+                <ListBox ItemsSource="{Binding Language}" Foreground="White" Margin="2" >
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+
+            </StackPanel>
+            <!--<StackPanel Grid.Column="1" Grid.Row="1">
+               
+                <materialDesign:Card Background="#20FFFFFF" Margin="5">
+                   
+                   
+                </materialDesign:Card>
+            </StackPanel>-->
+
+            <Button Width="100"  Grid.Column="0" Grid.Row="0"  Foreground="{StaticResource  SecondaryHueMidBrush}"
+                    HorizontalAlignment="Left"
+                    Click="Back_Click">
+                <Button.Content>
+                    <materialDesign:PackIcon Kind="ArrowBack"/>
+                </Button.Content>
+            </Button>
+        </Grid>
+    </materialDesign:Card>
+
+</UserControl>

@@ -1,8 +1,8 @@
-﻿using LibView.DAL.Models;
+﻿using LibView.DAL.Local.DataBase.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Sockets;
 
-namespace LibView.DAL
+namespace LibView.DAL.Local.DataBase
 {
     public class LibViewContext : DbContext
     {

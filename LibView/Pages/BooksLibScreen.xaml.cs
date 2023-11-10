@@ -1,4 +1,4 @@
-﻿using LibView.DAL.Models;
+﻿using LibView.DAL.Local.DataBase.Models;
 using LibView.Domain.UseCases;
 using LibView.Navigator;
 using LibView.Pages;
@@ -107,6 +107,7 @@ namespace LibView.UI.Pages
                 case "songsItem":
                     break;
                 case "findItem":
+                    NavigatorObject.Switch(new FindBookScreen());
                     break;
             }
         }
